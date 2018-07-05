@@ -2,13 +2,16 @@ package com.example.meusgastos.service;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Optional;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public class BasicAdapterService<T, ID extends Serializable, R extends JpaRepository<T, ID>>
 		implements BasicService<T, ID> {
 
-	private R repository;
+	protected R repository;
 
 	BasicAdapterService(R repository) {
 		this.repository = repository;
@@ -20,8 +23,8 @@ public class BasicAdapterService<T, ID extends Serializable, R extends JpaReposi
 	}
 
 	@Override
-	public T findOne(ID id) {
-		return this.repository.findOne(id);
+	public Optional<T> findById(ID id) {
+		return this.repository.findById(id);
 	}
 
 	@Override
@@ -36,11 +39,12 @@ public class BasicAdapterService<T, ID extends Serializable, R extends JpaReposi
 
 	@Override
 	public void delete(ID id) {
-		this.repository.delete(id);
+		this.repository.deleteById(id);
 	}
 
-	public R getRepository() {
-		return repository;
+	@Override
+	public Page<T> findAll(Pageable pageable) {
+		return this.repository.findAll(pageable);
 	}
 
 }

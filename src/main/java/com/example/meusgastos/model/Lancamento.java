@@ -67,7 +67,7 @@ public class Lancamento implements Serializable {
 
 	@ManyToMany
 	@JoinTable(name = "lancamento_tag", joinColumns = { @JoinColumn(name = "id_lancamento") }, inverseJoinColumns = {
-			@JoinColumn(name = "id_lancamento") })
+			@JoinColumn(name = "id_tag") })
 	private List<Tag> tags;
 
 	@OneToOne

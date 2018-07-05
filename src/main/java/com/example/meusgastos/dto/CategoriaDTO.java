@@ -1,8 +1,12 @@
 package com.example.meusgastos.dto;
 
+import javax.validation.constraints.NotNull;
+
 public class CategoriaDTO {
 
 	private Long id;
+	
+	@NotNull
 	private String nome;
 
 	public Long getId() {

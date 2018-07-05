@@ -1,7 +1,5 @@
 package com.example.meusgastos.model;
 
-import static javax.persistence.GenerationType.SEQUENCE;
-
 import java.io.Serializable;
 
 import javax.persistence.Column;
@@ -22,7 +20,7 @@ public class Categoria implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(generator = "categoria_sg", strategy = SEQUENCE)
+	@GeneratedValue
 	private Long id;
 
 	@Column(name = "nome", nullable = false, length = 80)
