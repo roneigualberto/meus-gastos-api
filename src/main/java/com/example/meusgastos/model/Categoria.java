@@ -1,3 +1,4 @@
+
 package com.example.meusgastos.model;
 
 import java.io.Serializable;

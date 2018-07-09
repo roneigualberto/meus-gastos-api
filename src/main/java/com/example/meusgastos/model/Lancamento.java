@@ -17,11 +17,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "lancamento")
@@ -53,6 +54,7 @@ public class Lancamento implements Serializable {
 
 	@Temporal(TemporalType.DATE)
 	@Column(name = "data_realizacao")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date dataRealizacao;
 
 	@ManyToOne
@@ -70,8 +72,8 @@ public class Lancamento implements Serializable {
 			@JoinColumn(name = "id_tag") })
 	private List<Tag> tags;
 
-	@OneToOne
-	private LancamentoAnexo anexo;
+	// @OneToOne
+	// private LancamentoAnexo anexo;
 
 	public Conta getConta() {
 		return conta;
@@ -153,12 +155,35 @@ public class Lancamento implements Serializable {
 		this.tags = tags;
 	}
 
-	public LancamentoAnexo getAnexo() {
-		return anexo;
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		return result;
 	}
 
-	public void setAnexo(LancamentoAnexo anexo) {
-		this.anexo = anexo;
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Lancamento other = (Lancamento) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		return true;
 	}
+
+	/*
+	 * public LancamentoAnexo getAnexo() { return anexo; }
+	 * 
+	 * public void setAnexo(LancamentoAnexo anexo) { this.anexo = anexo; }
+	 */
 
 }

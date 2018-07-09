@@ -13,9 +13,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-@Entity
-@Table(name = "lancamento_anexo")
-@SequenceGenerator(name = "lancamento_anexo_sg", sequenceName = "lancamento_anexo_seq", allocationSize = 1)
+//@Entity
+//@Table(name = "lancamento_anexo")
+//@SequenceGenerator(name = "lancamento_anexo_sg", sequenceName = "lancamento_anexo_seq", allocationSize = 1)
 public class LancamentoAnexo implements Serializable {
 
 	/**

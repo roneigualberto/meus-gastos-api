@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.transaction.annotation.Transactional;
 
 public class BasicAdapterService<T, ID extends Serializable, R extends JpaRepository<T, ID>>
 		implements BasicService<T, ID> {
@@ -24,12 +25,14 @@ public class BasicAdapterService<T, ID extends Serializable, R extends JpaReposi
 
 	@Override
 	public Optional<T> findById(ID id) {
-		return this.repository.findById(id);
+
+		return repository.findById(id);
 	}
 
 	@Override
+	@Transactional
 	public T save(T entity) {
-		return this.repository.save(entity);
+		return this.repository.saveAndFlush(entity);
 	}
 
 	@Override
